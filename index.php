@@ -9,15 +9,15 @@ require_once 'includes/header.php';
     <div class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Charge Your Electric Vehicle with Ease</h1>
-                <p>Find, book, and use charging stations in your area. Fast, reliable, and convenient.</p>
+                <h1><?= __('hero_title') ?></h1>
+                <p><?= __('hero_subtitle') ?></p>
                 <div class="hero-cta">
                     <a href="<?= APP_URL ?>/pages/stations.php" class="btn btn-primary btn-lg">
-                        <i class="fas fa-charging-station"></i> Find Stations
+                        <i class="fas fa-charging-station"></i> <?= __('find_stations') ?>
                     </a>
                     <?php if (!isLoggedIn()): ?>
                         <a href="<?= APP_URL ?>/pages/register.php" class="btn btn-outline btn-lg">
-                            <i class="fas fa-user-plus"></i> Register Now
+                            <i class="fas fa-user-plus"></i> <?= __('register_now') ?>
                         </a>
                     <?php endif; ?>
                 </div>
@@ -31,8 +31,8 @@ require_once 'includes/header.php';
     <div class="features">
         <div class="container">
             <div class="section-header">
-                <h2>Why Choose Our Charging Network</h2>
-                <p>We provide everything you need for a seamless charging experience</p>
+                <h2><?= __('why_choose_title') ?></h2>
+                <p><?= __('why_choose_subtitle') ?></p>
             </div>
 
             <div class="features-grid">
@@ -40,32 +40,32 @@ require_once 'includes/header.php';
                     <div class="feature-icon">
                         <i class="fas fa-map-marked-alt"></i>
                     </div>
-                    <h3>Easy Station Locator</h3>
-                    <p>Find charging stations near you with real-time availability status.</p>
+                    <h3><?= __('feature_locator_title') ?></h3>
+                    <p><?= __('feature_locator_desc') ?></p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-calendar-check"></i>
                     </div>
-                    <h3>Convenient Booking</h3>
-                    <p>Reserve your charging slot in advance to ensure availability.</p>
+                    <h3><?= __('feature_booking_title') ?></h3>
+                    <p><?= __('feature_booking_desc') ?></p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
                     </div>
-                    <h3>Fast Charging</h3>
-                    <p>Multiple connector types and power outputs for different vehicle needs.</p>
+                    <h3><?= __('feature_charging_title') ?></h3>
+                    <p><?= __('feature_charging_desc') ?></p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Track Your Usage</h3>
-                    <p>Monitor your charging history and expenses with detailed analytics.</p>
+                    <h3><?= __('feature_tracking_title') ?></h3>
+                    <p><?= __('feature_tracking_desc') ?></p>
                 </div>
             </div>
         </div>
