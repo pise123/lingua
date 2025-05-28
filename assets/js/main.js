@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAlerts();
     handleFormValidation();
     initializeAnimations();
+    initializeLanguageSwitcher();
     
     // Initialize specific components if they exist
     if (document.querySelector('.booking-calendar')) {
@@ -23,6 +24,17 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeCharts();
     }
 });
+
+function initializeLanguageSwitcher() {
+    const languageSwitcher = document.querySelector('.language-switcher a');
+    if (languageSwitcher) {
+        languageSwitcher.addEventListener('click', function(e) {
+            e.preventDefault();
+            const newLang = this.getAttribute('href').split('=')[1];
+            window.location.href = `${window.location.origin}${window.location.pathname}?lang=${newLang}`;
+        });
+    }
+}
 
 /**
  * Initialize dropdown menus
