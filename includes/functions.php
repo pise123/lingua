@@ -6,6 +6,38 @@
  */
 
 /**
+ * Get translation for a key
+ *
+ * @param string $key Translation key
+ * @param array $params Parameters to replace in the translation
+ * @return string Translated text
+ */
+function __($key, $params = []) {
+    static $translations = null;
+    
+    if ($translations === null) {
+        $lang = $_SESSION['lang'] ?? 'en';
+        $langFile = dirname(__DIR__) . '/config/languages/' . $lang . '.php';
+        
+        if (file_exists($langFile)) {
+            $translations = require $langFile;
+        } else {
+            $translations = require dirname(__DIR__) . '/config/languages/en.php';
+        }
+    }
+    
+    $text = $translations[$key] ?? $key;
+    
+    if (!empty($params)) {
+        foreach ($params as $param => $value) {
+            $text = str_replace(':' . $param, $value, $text);
+        }
+    }
+    
+    return $text;
+}
+
+/**
  * Format a date and time
  *
  * @param string $dateTime Date and time string
