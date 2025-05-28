@@ -6,7 +6,7 @@ ob_start();
 require_once dirname(__DIR__) . '/config/config.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $_SESSION['lang'] ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,15 +50,19 @@ require_once dirname(__DIR__) . '/config/config.php';
                         <?php if (isLoggedIn()): ?>
                             <li><a href="<?= APP_URL ?>/pages/bookings.php">Bookings</a></li>
                             <li><a href="<?= APP_URL ?>/pages/dashboard.php">Dashboard</a></li>
-
                             <li><a href="<?= APP_URL ?>/admin/admin.php">Admin</a></li>
-
                             <li><a href="<?= APP_URL ?>/pages/profile.php">Profile</a></li>
                             <li><a href="<?= APP_URL ?>/pages/logout.php">Logout</a></li>
                         <?php else: ?>
                             <li><a href="<?= APP_URL ?>/pages/login.php">Login</a></li>
                             <li><a href="<?= APP_URL ?>/pages/register.php" class="btn btn-primary">Register</a></li>
                         <?php endif; ?>
+                        <li class="language-switcher">
+                            <a href="?lang=<?= $_SESSION['lang'] === 'en' ? 'it' : 'en' ?>" class="btn btn-outline btn-sm">
+                                <i class="fas fa-globe"></i>
+                                <?= $_SESSION['lang'] === 'en' ? 'IT' : 'EN' ?>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

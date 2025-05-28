@@ -21,8 +21,12 @@ define('ADMIN_EMAIL', 'admin@example.com');
 // Set default timezone
 date_default_timezone_set('UTC');
 
+// Set default language if not set
+if (!isset($_SESSION['lang'])) {
+    $_SESSION['lang'] = 'en';
+}
+
 // Error reporting settings
-// In production, set error_reporting to E_ALL and display_errors to 0
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -40,10 +44,10 @@ require_once INCLUDES_PATH . 'functions.php';
 
 // Initialize application settings
 $settings = [
-    'booking_duration_minutes' => 60, // Default booking duration in minutes
-    'booking_expiry_minutes' => 10,   // Minutes after which a booking expires if user doesn't show up
-    'price_per_kwh' => 0.35,          // Price per kWh in currency
-    'min_booking_interval' => 30,     // Minimum booking interval in minutes
+    'booking_duration_minutes' => 60,
+    'booking_expiry_minutes' => 10,
+    'price_per_kwh' => 0.35,
+    'min_booking_interval' => 30,
 ];
 
 // User session handling
@@ -62,7 +66,6 @@ function requireAdmin() {
         redirect('login.php');
     }
 
-    // Check if user is in Admins table
     $conn = getDbConnection();
     $stmt = $conn->prepare("SELECT admin_id FROM Admins WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
@@ -83,7 +86,6 @@ function logout() {
 
 // Redirect function
 function redirect($page) {
-    // Ensure no output has been sent
     if (!headers_sent()) {
         header("Location: " . APP_URL . "/" . $page);
         exit;
